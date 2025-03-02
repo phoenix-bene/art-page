@@ -1,0 +1,12 @@
+[
+  {
+    "imageSrc": "https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg",
+    "alt": "Description for Image 1",
+    "title": "Title 1"
+  },
+  {
+    "imageSrc": "https://primefaces.org/cdn/primeng/images/galleria/galleria2.jpg",
+    "alt": "Description for Image 2",
+    "title": "Title 2"
+  }
+]

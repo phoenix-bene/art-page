@@ -1,0 +1,13 @@
+@media only screen and (max-width: 960px) {
+  .flex-grow {
+    width: calc(100vw - 15px);
+    height: 1rem;
+  }
+  .flex-grow-container {
+    display: flex;
+  }
+}
+
+.flex-grow-container {
+  margin-left: 15px;
+}

@@ -1,0 +1,15 @@
+<div>
+  <div class="home-container">
+    <div class="orbit-wrapper">
+      <div class="planet"></div>
+      <!-- top: Ausstellungen -->
+      <div *ngFor="let t of topTiles; index as i" class="satellite-top" [style]="{'--i': i+1, '--tot': topTiles.length}">{{ t.title }}</div>
+      <!-- Kunst zeigen -->
+      <div *ngFor="let t of middleTopTiles; index as i" class="satellite-middle-top" [style]="{'--i': i+1, '--tot': middleTopTiles.length}">{{ t.title }}</div>
+      <!-- Kurswesen -->
+      <div *ngFor="let t of middleBottomTiles; index as i" class="satellite-middle-bottom" [style]="{'--i': i+1, '--tot': middleBottomTiles.length}">{{ t.title }}</div>
+      <!-- bottom -->
+      <div *ngFor="let t of bottomTiles; index as i" class="satellite-bottom" [style]="{'--i': i+1, '--tot': bottomTiles.length}">{{ t.title }}</div>
+    </div>
+  </div>
+</div>

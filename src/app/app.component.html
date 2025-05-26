@@ -1,11 +1,11 @@
 <div>
   <main class="main">
-    <div class="layout-topbar-logo-container">
-      <a href="/">
-        <img class="layout-topbar-logo" alt="home" src="logo_3.svg" fill/>
-      </a>
-    </div>
     <div *ngIf="showMenu">
+      <div class="layout-topbar-logo-container">
+        <a href="/">
+          <img class="layout-topbar-logo" alt="home" src="logo_3.svg" fill/>
+        </a>
+      </div>
       <menu></menu>
     </div>
     <router-outlet></router-outlet>

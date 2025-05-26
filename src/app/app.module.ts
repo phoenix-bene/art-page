@@ -13,6 +13,7 @@ import Aura from '@primeng/themes/aura';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {PrimengImportsModule} from './primeng-import';
 import {definePreset} from '@primeng/themes';
+import {SphereComponent} from './home/components/sphere.component';
 
 const Bronze = definePreset(Aura, {
   semantic: {
@@ -48,6 +49,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
+    SphereComponent,
     MenuComponent,
     GalleriaResponsiveComponent
   ],

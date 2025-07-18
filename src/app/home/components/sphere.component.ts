@@ -52,25 +52,28 @@ export class SphereComponent implements AfterViewInit {
   }
 
   addLightAndShadow() {
-    this.light = new THREE.DirectionalLight(0xffffff, 1);
-    this.light.position.set(-6, 10, 12);
+    this.light = new THREE.DirectionalLight(0xffffff, 2);
+    this.light.position.set(-8, 10, 12);
     this.light.castShadow = true;
 
     // Schattenqualität erhöhen (optional)
     this.light.shadow.mapSize.width = 1024;
     this.light.shadow.mapSize.height = 1024;
-    this.light.shadow.camera.near = 1;
-    this.light.shadow.camera.far = 50;
-
+    this.light.shadow.camera.near = 5;
+    this.light.shadow.camera.far = 40;
+    this.light.shadow.camera.right = 8;
+    // this.scene.add( new THREE.CameraHelper( this.light.shadow.camera ) ); // can be used to display camera edges
     this.scene.add(this.light);
 
     // Schattenempfänger
     const planeGeometry = new THREE.PlaneGeometry(500, 500);
-    const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.8 });
+
+    const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.8, side: THREE.DoubleSide });
     const shadowPlane = new THREE.Mesh(planeGeometry, planeMaterial);
     shadowPlane.rotation.x = -Math.PI / 2;
     shadowPlane.position.y = -this.sphereRadius - 0.3; // leicht unterhalb der Sphäre
     shadowPlane.receiveShadow = true;
+    // shadowPlane.material.color = new THREE.Color("white"); // can be used to change or display shadow more profound
 
     this.scene.add(shadowPlane);
   }

@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, ViewChild} from '@angular/core';
 import * as THREE from 'three';
+import {distinctUntilChanged, from, fromEvent, map} from 'rxjs';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'sphere',
@@ -23,8 +25,26 @@ export class SphereComponent implements AfterViewInit {
 
   private baseColor;
 
-  constructor() {
+  private onWindowResize = (): void => {
+    const canvas = this.canvasRef.nativeElement;
+    const sphereWidth = document.getElementById('sphere')?.clientWidth;
+    const sphereHeight = document.getElementById('sphere')?.clientHeight;
+    const width = sphereWidth ? sphereWidth : canvas.clientWidth;
+    const height = sphereHeight ? sphereHeight : canvas.clientHeight;
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+
+    this.renderer.setSize(width, height);
+    console.log('Resize triggered: w/h', width, height);
+  }
+
+  constructor(@Inject(DOCUMENT) document: Document) {
     this.baseColor = new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--art-primary-800').trim() || '#3399ff');
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   ngAfterViewInit(): void {
@@ -32,6 +52,8 @@ export class SphereComponent implements AfterViewInit {
     this.addLightAndShadow();
     this.addSphereDotsGrid();
     this.animate();
+
+    window.addEventListener('resize', this.onWindowResize);
   }
 
   initThree(): void {
